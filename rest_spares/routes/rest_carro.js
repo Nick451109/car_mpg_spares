@@ -2,6 +2,25 @@ const express = require('express');
 const router = express.Router();
 const { Carro, Persona } = require('../models'); // Asegúrate de importar tus modelos adecuadamente
 
+const claseUser = require('../models').carro;
+
+
+router.get('/findAll/json', function (req, res, next) {
+
+  /* MÉTODO ESTÁTICO findAll  */
+
+  claseUser.findAll({
+    attributes: { exclude: ["placa"] },
+  })
+  .then(resultado => {
+      res.json(resultado);
+  })
+  .catch(error => res.status(400).send(error))
+
+});
+
+
+
 // CREATE - Agregar un nuevo carro
 router.post('/carros', (req, res) => {
   const { placa, modelo, marca, year, km, persona_idpersona } = req.body;
