@@ -12,6 +12,16 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
+   await queryInterface.bulkInsert('repuesto', [
+    {
+      idrepuesto : 1,
+      descripcion : 'Descripcion repuesto 1'
+    },{
+      idrepuesto: 2,
+      descripcion : 'Descripcion de repuesto 2',
+    }
+   ], 
+   {})
   },
 
   async down (queryInterface, Sequelize) {
@@ -21,5 +31,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
+    await queryInterface.bulkDelete('repuesto', null, {});
   }
 };
