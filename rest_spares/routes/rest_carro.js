@@ -64,22 +64,28 @@ router.get('/findById/:id/json', function(req, res, next) {
 });
 
 // UPDATE - Actualizar un carro por ID
-router.put('/carros/:id', (req, res) => {
-  const carroId = req.params.id;
-  const { placa, modelo, marca, year, km, persona_idpersona } = req.body;
+router.put('/update/:id', function(req, res, next) {  
 
-  claseCarro.update({ placa, modelo, marca, year, km, persona_idpersona }, { where: { id: carroId } })
-    .then(([rowsUpdated]) => {
-      if (rowsUpdated === 0) {
-        res.status(404).json({ error: 'Carro no encontrado' });
+  let id = req.params.id;
+
+  claseCarro.findByPk(id)
+    .then(instancia => {
+      if(instancia) {
+
+        instancia.update(req.body)
+          .then(instanciaActualizada => {
+            res.status(201).json(instanciaActualizada);
+          })
+          .catch(error => {
+            res.status(500).json({ error: 'Error al actualizar el registro' });
+          });
+
       } else {
-        res.status(200).json({ message: 'Carro actualizado exitosamente' });
+        res.status(404).json({error: "No existe registro con el identificador "+id})
       }
     })
-    .catch(error => {
-      console.error(error);
-      res.status(500).json({ error: 'Error al actualizar el carro' });
-    });
+    .catch(error => res.status(400).send(error))
+
 });
 
 
