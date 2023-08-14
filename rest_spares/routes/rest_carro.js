@@ -91,21 +91,28 @@ router.put('/update/:id', function(req, res, next) {
 
 
 // DELETE - Eliminar un carro por ID
-router.delete('/carros/:id', (req, res) => {
-  const carroId = req.params.id;
+router.delete('/delete/:id', function(req, res, next) {  
 
-  claseCarro.destroy({ where: { id: carroId } })
-    .then(rowsDeleted => {
-      if (rowsDeleted === 0) {
-        res.status(404).json({ error: 'Carro no encontrado' });
+  let id = req.params.id;
+
+  claseCarro.findByPk(id)
+    .then(instancia => {
+      if(instancia) {
+
+        instancia.destroy()
+          .then(() => {
+            res.status(204).json({ mensaje: 'Registro eliminado'});
+          })
+          .catch(error => {
+            res.status(500).json({ error: 'Error al actualizar el registro' });
+          });
+
       } else {
-        res.status(204).json({ message: 'Carro eliminado exitosamente' });
+        res.status(404).json({error: "No existe registro con el identificador "+id})
       }
     })
-    .catch(error => {
-      console.error(error);
-      res.status(500).json({ error: 'Error al eliminar el carro' });
-    });
+    .catch(error => res.status(400).send(error))
+
 });
 
 module.exports = router;
