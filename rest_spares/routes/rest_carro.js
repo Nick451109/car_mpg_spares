@@ -9,7 +9,7 @@ router.get('/findAll/json', function (req, res, next) {
 
   /* MÉTODO ESTÁTICO findAll  */
 
-  claseUser.findAll({
+  claseCarro.findAll({
     
   })
   .then(resultado => {
