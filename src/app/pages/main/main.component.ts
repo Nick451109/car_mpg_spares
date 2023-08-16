@@ -8,6 +8,7 @@ import { DataProviderService } from 'src/app/services/data-provider.service';
 })
 export class MainComponent {
   public data:Carro[] = [];
+  displayedColumns: string[] = ['placa','modelo','marca', 'year','km/gal'];
 
   constructor(private dataProvider:DataProviderService){}
   ngOnInit() {
