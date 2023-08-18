@@ -1,9 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { Carro, Persona } = require('../models'); // Asegúrate de importar tus modelos adecuadamente
-
 const claseCarro = require('../models').carro;
-
 
 router.get('/findAll/json', function (req, res, next) {
 

@@ -2,6 +2,7 @@ const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('mantenimiento', {
     idmantenimiento: {
+      autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
@@ -22,12 +23,12 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(45),
       allowNull: true
     },
-    carro_placa: {
+    carro_idCarro: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
         model: 'carro',
-        key: 'placa'
+        key: 'idCarro'
       }
     }
   }, {
@@ -47,7 +48,7 @@ module.exports = function(sequelize, DataTypes) {
         name: "fk_mantenimiento_carro1_idx",
         using: "BTREE",
         fields: [
-          { name: "carro_placa" },
+          { name: "carro_idCarro" },
         ]
       },
     ]

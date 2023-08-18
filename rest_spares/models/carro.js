@@ -1,10 +1,15 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('carro', {
-    placa: {
+    idCarro: {
+      autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
+    },
+    placa: {
+      type: DataTypes.STRING(45),
+      allowNull: true
     },
     modelo: {
       type: DataTypes.STRING(45),
@@ -14,11 +19,11 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(45),
       allowNull: true
     },
-    year: {
+    anio: {
       type: DataTypes.STRING(45),
       allowNull: true
     },
-    'km/gal': {
+    kmgal: {
       type: DataTypes.STRING(45),
       allowNull: true
     },
@@ -40,7 +45,7 @@ module.exports = function(sequelize, DataTypes) {
         unique: true,
         using: "BTREE",
         fields: [
-          { name: "placa" },
+          { name: "idCarro" },
         ]
       },
       {
