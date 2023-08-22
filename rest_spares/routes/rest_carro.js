@@ -4,6 +4,14 @@ const claseCarro = require('../models').carro;
 
 router.get('/findAll/json', function (req, res, next) {
 
+  /* VERIFICADOR DE AUTORIZACIÓN */
+
+  const { rol } = req.user;
+
+  if (rol !== 'admin') {
+      return res.sendStatus(403);
+  }
+  
   /* MÉTODO ESTÁTICO findAll  */
 
   claseCarro.findAll({

@@ -3,9 +3,19 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+
+/* MÓDULO dotenv */
+const dotenv = require('dotenv');
+
+/* CARGA DE DATOS DE CONFIGURACION EN MEMORIA */
+dotenv.config();
+
 var cors = require('cors')
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+
+/* CARGA DEL MIDDLEWARE authenticateJWT */
+var authenticateJWT = require('./middleware/auth');
 
 var app = express();
 
@@ -25,6 +35,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/rest/carro', carroRouter);
+/* USE LA FUNCIÓN authenticateJWT */
+app.use('/rest/libro', authenticateJWT, carroRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
