@@ -21,6 +21,8 @@ var app = express();
 
 //referencia al manejador de rutas
 var carroRouter = require('./routes/rest_carro');
+var personaRouter = require('./routes/rest_persona');
+var repuestoRouter = require('./routes/rest_repuesto');
 app.use(cors());
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -35,8 +37,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/rest/carro', carroRouter);
+app.use('/rest/persona', personaRouter);
+app.use('/rest/repuesto',authenticateJWT, repuestoRouter);
 /* USE LA FUNCIÓN authenticateJWT */
-app.use('/rest/libro', authenticateJWT, carroRouter);
+//app.use('/rest/libro', authenticateJWT, carroRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

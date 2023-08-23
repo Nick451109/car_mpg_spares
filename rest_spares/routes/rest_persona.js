@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const claseCarro = require('../models').carro;
+const clasePersona = require('../models').persona;
 
 router.get('/findAll/json', function (req, res, next) {
   
   /* MÉTODO ESTÁTICO findAll  */
 
-  claseCarro.findAll({
+  clasePersona.findAll({
     
   })
   .then(resultado => {
@@ -20,26 +20,24 @@ router.get('/findAll/json', function (req, res, next) {
 
 // CREATE - Agregar un nuevo carro
 router.post('/save', (req, res) => {
-  const { placa, modelo, marca, year, km, persona_idpersona } = req.body;
+  const { nombre, apellido } = req.body;
 
-  claseCarro.create({ placa, modelo, marca, year, km, persona_idpersona })
-    .then(carro => {
-      res.status(201).json(carro);
+  clasePersona.create({ nombre, apellido })
+    .then(persona => {
+      res.status(201).json(persona);
     })
     .catch(error => {
       console.error(error);
-      res.status(500).json({ error: 'Error al crear el carro' });
+      res.status(500).json({ error: 'Error al crear la persona' });
     });
 });
-
-
 
 // READ - Obtener un carro por ID
 router.get('/findById/:id/json', function(req, res, next) {  
 
   let id = req.params.id;
 
-  claseCarro.findByPk(id)
+  clasePersona.findByPk(id)
       .then(instancia => {
         if(instancia) {
           res.status(200).json(instancia);
@@ -55,7 +53,7 @@ router.put('/update/:id', function(req, res, next) {
 
   let id = req.params.id;
 
-  claseCarro.findByPk(id)
+  clasePersona.findByPk(id)
     .then(instancia => {
       if(instancia) {
 
@@ -82,7 +80,7 @@ router.delete('/delete/:id', function(req, res, next) {
 
   let id = req.params.id;
 
-  claseCarro.findByPk(id)
+  clasePersona.findByPk(id)
     .then(instancia => {
       if(instancia) {
 

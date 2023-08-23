@@ -1,12 +1,20 @@
 const express = require('express');
 const router = express.Router();
-const claseCarro = require('../models').carro;
+const claseRepuesto = require('../models').repuesto;
 
 router.get('/findAll/json', function (req, res, next) {
+
+  /* VERIFICADOR DE AUTORIZACIÓN */
+
+  const { rol } = req.user;
+
+  if (rol !== 'admin') {
+     return res.sendStatus(403);
+  }
   
   /* MÉTODO ESTÁTICO findAll  */
 
-  claseCarro.findAll({
+  claseRepuesto.findAll({
     
   })
   .then(resultado => {
@@ -20,26 +28,24 @@ router.get('/findAll/json', function (req, res, next) {
 
 // CREATE - Agregar un nuevo carro
 router.post('/save', (req, res) => {
-  const { placa, modelo, marca, year, km, persona_idpersona } = req.body;
+  const { descripcion } = req.body;
 
-  claseCarro.create({ placa, modelo, marca, year, km, persona_idpersona })
-    .then(carro => {
-      res.status(201).json(carro);
+  claseRepuesto.create({ descripcion })
+    .then(repuesto => {
+      res.status(201).json(repuesto);
     })
     .catch(error => {
       console.error(error);
-      res.status(500).json({ error: 'Error al crear el carro' });
+      res.status(500).json({ error: 'Error al crear el repuesto' });
     });
 });
-
-
 
 // READ - Obtener un carro por ID
 router.get('/findById/:id/json', function(req, res, next) {  
 
   let id = req.params.id;
 
-  claseCarro.findByPk(id)
+  claseRepuesto.findByPk(id)
       .then(instancia => {
         if(instancia) {
           res.status(200).json(instancia);
@@ -55,7 +61,7 @@ router.put('/update/:id', function(req, res, next) {
 
   let id = req.params.id;
 
-  claseCarro.findByPk(id)
+  claseRepuesto.findByPk(id)
     .then(instancia => {
       if(instancia) {
 
@@ -82,7 +88,7 @@ router.delete('/delete/:id', function(req, res, next) {
 
   let id = req.params.id;
 
-  claseCarro.findByPk(id)
+  claseRepuesto.findByPk(id)
     .then(instancia => {
       if(instancia) {
 
