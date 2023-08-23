@@ -23,11 +23,11 @@ import { FlexLayoutModule } from '@angular/flex-layout';
   declarations: [
     AppComponent,
     MainComponent,
-    ReportComponent,
     AboutComponent,
     MenuComponent
   ],
   imports: [
+    ReportComponent,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,

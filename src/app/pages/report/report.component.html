@@ -1,1 +1,8 @@
-<p>report works!</p>
+<mat-form-field>
+    <mat-label>Carros</mat-label>
+    <mat-select [formControl]="carrosSelect">
+        <mat-option *ngFor="let carro of dataCarros" [value]="carro.modelo">
+            {{carro.modelo}}
+        </mat-option>
+    </mat-select>
+</mat-form-field>
