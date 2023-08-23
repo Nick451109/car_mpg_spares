@@ -12,7 +12,7 @@ module.exports = {
       "marca": "chevrolet",
       "anio": "2012",
       "kmgal":"60",
-      "persona": 1,
+      "persona_idpersona": 1,
      },
      {
       "placa":"GPX-2320",
@@ -20,7 +20,7 @@ module.exports = {
       "marca": "chevrolet",
       "anio": "2012",
       "kmgal":"22",
-      "persona": 2,
+      "persona_idpersona": 2,
      }
 
    ])

@@ -1,8 +1,43 @@
-<mat-form-field>
-    <mat-label>Carros</mat-label>
-    <mat-select [formControl]="carrosSelect">
-        <mat-option *ngFor="let carro of dataCarros" [value]="carro.modelo">
-            {{carro.modelo}}
-        </mat-option>
-    </mat-select>
-</mat-form-field>
+
+<div class="container" fxLayout="row" fxLayoutAlign="center">
+    
+    <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%">
+        <mat-form-field>
+            <mat-label>Personas</mat-label>
+            <mat-select [formControl]="personasSelect" (selectionChange)="selection($event.value)">
+                <mat-option *ngFor="let persona of dataPersonas" [value]="persona.idpersona">
+                    {{persona.nombre}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <table mat-table [dataSource]="dataCarros" class="mat-elevation-z8">
+
+            <!-- REPETIR POR CADA ATRIBUTO DE LA INTERFAZ - INICIO -->
+            <ng-container matColumnDef="placa">
+                <th mat-header-cell *matHeaderCellDef> Placa</th>
+                <td mat-cell *matCellDef="let element">  {{element.placa}} </td>
+            </ng-container>
+            <ng-container matColumnDef="modelo">
+                <th mat-header-cell *matHeaderCellDef> Modelo </th>
+                <td mat-cell *matCellDef="let element">  {{element.modelo}} </td>
+            </ng-container>
+            <ng-container matColumnDef="marca">
+                <th mat-header-cell *matHeaderCellDef> Marca </th>
+                <td mat-cell *matCellDef="let element">  {{element.marca}} </td>
+            </ng-container>
+            <ng-container matColumnDef="year">
+                <th mat-header-cell *matHeaderCellDef> Year </th>
+                <td mat-cell *matCellDef="let element">  {{element.anio}} </td>
+            </ng-container>
+            <ng-container matColumnDef="km/gal">
+                <th mat-header-cell *matHeaderCellDef> Km/gal </th>
+                <td mat-cell *matCellDef="let element">  {{element['kmgal']}} </td>
+            </ng-container>
+            <!-- FIN -->
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+    </div>
+</div>
