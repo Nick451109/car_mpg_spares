@@ -16,7 +16,7 @@ export class DataProviderService {
   }
 
   getResponseCarroByPersona(id:number){
-    this.urlCarroByPersona = `http://localhost:3000/rest/carro/findByPersona/${id}/json`;
+    this.urlCarroByPersona = `https://restspares-production-a825.up.railway.app/rest/carro/findByPersona/${id}/json`;
     return this.httpClient.get(this.urlCarroByPersona);
   }
 }
