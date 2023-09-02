@@ -4,9 +4,9 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class DataProviderService {
-  public urlCarros:string = "https://restspares-production.up.railway.app/rest/carro/findAll/json";
-  public urlPersonas:string = "https://restspares-production.up.railway.app/rest/persona/findAll/json";
-  public urlCarroByPersona:string = `https://restspares-production.up.railway.app/rest/carro/findByPersona/1/json`;
+  public urlCarros:string = "https://restspares-production-a825.up.railway.app/rest/carro/findAll/json";
+  public urlPersonas:string = "https://restspares-production-a825.up.railway.app/rest/persona/findAll/json";
+  public urlCarroByPersona:string = `https://restspares-production-a825.up.railway.app/rest/carro/findByPersona/1/json`;
   constructor(private httpClient: HttpClient) { }
   getResponseCarro() {
     return this.httpClient.get(this.urlCarros);
