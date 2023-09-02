@@ -6,9 +6,9 @@
   on:
     # Triggers the workflow on push or pull request events but only for the "main" branch
     push:
-      branches: [ "main" ]
+      branches: [ "desktop" ]
     pull_request:
-      branches: [ "main" ]
+      branches: [ "desktop" ]
 
     # Allows you to run this workflow manually from the Actions tab
     # Input para el workflow
@@ -33,7 +33,6 @@
             node-version: "18"
         - name: Install deps
           run: npm i
-          
         - name: Build
           run: npm run build:prod
         - name: Deploy
