@@ -33,6 +33,7 @@
             node-version: "18"
         - name: Install deps
           run: npm i
+          
         - name: Build
           run: npm run build:prod
         - name: Deploy
