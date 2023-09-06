@@ -9,3 +9,13 @@
     padding-left: 2vw;
     padding-right: 2vw;
 }
+
+.background {
+    background-color: gray; /* Color de fondo gris claro */
+    border-radius: 10px; /* Esquinas redondeadas */
+    padding: 20px; /* Espaciado interno */
+    text-align: center; /* Alineación de texto centrada */
+    color: white; /* Texto en letra blanca */
+    margin-bottom: 20px; /* Espacio entre el div de fondo y la tabla */
+    width: 130%;
+}

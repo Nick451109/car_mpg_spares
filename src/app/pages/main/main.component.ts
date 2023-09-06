@@ -9,7 +9,7 @@ import { DataProviderService } from 'src/app/services/data-provider.service';
 export class MainComponent {
   public data:Carro[] = [];
   displayedColumns: string[] = ['placa','modelo','marca', 'año','km/gal'];
-
+  message:string ="Todos los registros disponibles"
   constructor(private dataProvider:DataProviderService){}
   ngOnInit() {
     this.dataProvider.getResponseCarro().subscribe((response) => { 
